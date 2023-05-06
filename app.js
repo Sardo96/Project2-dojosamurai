@@ -58,9 +58,9 @@ app.use(getCurrentLoggedUser);
 
 // default value for title local
 const capitalize = require('./utils/capitalize');
-const projectName = 'library-project';
+const projectName = 'Project2-dojosamurai';
 
-app.locals.appTitle = 'Library App';
+app.locals.appTitle = 'Dojo Samurai';
 
 // 👇 Start handling routes here
 const indexRoutes = require('./routes/index.routes');
