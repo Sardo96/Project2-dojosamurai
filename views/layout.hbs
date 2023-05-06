@@ -1,0 +1,36 @@
+<html lang='en'>
+
+  <head>
+    <meta charset='UTF-8' />
+    <meta name='viewport' content='width=device-width, initial-scale=1.0' />
+    <meta http-equiv='X-UA-Compatible' content='ie=edge' />
+    <title>{{appTitle}}</title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+  </head>
+
+  <body>
+
+    {{#if currentUser}}
+      <p>Welcome {{currentUser.username}}!</p>
+      <form action='/logout' method='POST'>
+        <button type='submit'> Logout</button>
+      </form>
+    {{/if}}
+
+    <nav>
+      {{#if currentUser}}
+        <a href='/books'>All Books</a>
+        <a href='/books/create'>Create book</a>
+      {{else}}
+        <a href='/books'>All Books</a>
+        <a href='/signup' style='margin-left: 30px;'> Signup</a>
+        <a href='/login'>Login</a>
+      {{/if}}
+    </nav>
+
+    {{{body}}}
+
+    <script src='/js/script.js'></script>
+  </body>
+
+</html>
