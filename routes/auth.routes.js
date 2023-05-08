@@ -1,5 +1,6 @@
 const router = require('express').Router();
 const User = require('../models/User.model');
+const Grading = require('../models/User.model');
 const bcrypt = require('bcryptjs');
 
 router.get('/signup', (req, res) => {
@@ -35,6 +36,10 @@ router.post('/signup', async (req, res) => {
     username,
     email,
     password: hashedPassword
+  });
+  await Grading.create({
+    belt,
+    date: Date.now()
   });
   res.redirect('/');
 });

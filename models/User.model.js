@@ -42,5 +42,5 @@ const userSchema = new Schema(
 );
 
 const User = model('User', userSchema);
-
-module.exports = User;
+const Grading = model('Grading', gradingSchema);
+module.exports = User, Grading;
