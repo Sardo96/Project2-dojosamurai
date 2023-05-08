@@ -28,7 +28,7 @@ const mongoStore = require('connect-mongo');
 app.use(
   session({
     resave: true,
-    saveUnitialized: true,
+    saveUninitialized: true,
     secret: process.env.SESSION_SECRET,
     cookie: {
       sameSite: true, //front end and backend are running in the same site
