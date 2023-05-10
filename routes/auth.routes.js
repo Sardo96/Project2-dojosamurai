@@ -1,6 +1,5 @@
 const router = require('express').Router();
 const User = require('../models/User.model');
-const Grading = require('../models/User.model');
 const bcrypt = require('bcryptjs');
 
 router.get('/signup', (req, res) => {
@@ -8,9 +7,11 @@ router.get('/signup', (req, res) => {
 });
 
 router.post('/signup', async (req, res) => {
-  const { username, email, password } = req.body;
+  const { username, email, password, belt, firstName, lastName} = req.body;
+  let isSensei;
+  let isStudent;
 
-  if (username === '' || email === '' || password === '') {
+  if (username === '' || email === '' || password === '' || belt === '' || firstName === '' || lastName === '') {
     res.render('auth/signup', { errorMessage: 'Fill in all fields' });
     return;
   }
@@ -28,19 +29,29 @@ router.post('/signup', async (req, res) => {
     res.render('auth/signup', { errorMessage: 'User already exists' });
     return;
   }
-
+  
   const saltRounds = 10;
   const salt = bcrypt.genSaltSync(saltRounds);
   const hashedPassword = bcrypt.hashSync(password, salt);
+  if (belt === '1st Dan' || belt === '2nd Dan' || belt === '3rd Dan' || belt === '4th Dan' || belt === '5th Dan' || belt === '6th Dan' || belt === '7th Dan') {
+    isSensei= true,
+    isStudent= false
+  } else {
+    isSensei= false,
+    isStudent= true
+  }
+
   await User.create({
     username,
     email,
-    password: hashedPassword
-  });
-  await Grading.create({
+    password: hashedPassword,
     belt,
-    date: Date.now()
+    firstName,
+    lastName,
+    isSensei,
+    isStudent
   });
+
   res.redirect('/');
 });
 

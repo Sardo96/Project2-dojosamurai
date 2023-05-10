@@ -66,9 +66,6 @@ app.locals.appTitle = 'Dojo Samurai';
 const indexRoutes = require('./routes/index.routes');
 app.use('/', indexRoutes);
 
-const bookRoutes = require('./routes/book.routes');
-app.use('/', bookRoutes);
-
 const authRoutes = require('./routes/auth.routes');
 app.use('/', authRoutes);
 
