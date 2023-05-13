@@ -7,7 +7,8 @@ router.get('/signup', (req, res) => {
 });
 
 router.post('/signup', async (req, res) => {
-  const { username, email, password, belt, firstName, lastName } = req.body;
+  const { username, email, password, bio, belt, dojo, firstName, lastName } =
+    req.body;
   let isSensei;
   let isStudent;
 
@@ -61,6 +62,8 @@ router.post('/signup', async (req, res) => {
     belt,
     firstName,
     lastName,
+    dojo,
+    bio,
     isSensei,
     isStudent
   });

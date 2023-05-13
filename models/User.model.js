@@ -36,6 +36,15 @@ const userSchema = new Schema(
       require: true,
       trim: true
     },
+    dojo: {
+      type: String,
+      required: true,
+      trim: true
+    },
+    bio: {
+      type: String,
+      default: ''
+    },
     isSensei: {
       type: Boolean,
       default: false,

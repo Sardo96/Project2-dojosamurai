@@ -2,3 +2,5 @@
 document.addEventListener("DOMContentLoaded", () => {
   console.log("Project2-dojosamurai JS imported successfully!");
 });
+
+
