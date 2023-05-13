@@ -17,9 +17,18 @@
       </form>
     {{/if}}
 
+    {{#if currentUser.isSensei}}
+      <a href='/sensei'>Sensei</a>
+      {{else}}
+      {{#if currentUser}}
+        <a href='/student'>Student</a>
+      {{/if}}
+    {{/if}}    
+
     <nav>
       {{#if currentUser}}
         <a href='/'>Home</a>
+        <a href="/profile"> {{ currentUser.firstName }} </a>
       {{else}}
         <a href='/signup' style='margin-left: 30px;'> Signup</a>
         <a href='/login'>Login</a>
@@ -28,7 +37,7 @@
 
     {{{body}}}
 
-    <script src='/js/script.js'></script>
+    <script src='/public/js/script.js'></script>
   </body>
 
 </html>
