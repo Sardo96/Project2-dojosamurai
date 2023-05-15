@@ -16,7 +16,9 @@ router.post('/signup', async (req, res) => {
     username === '' ||
     email === '' ||
     password === '' ||
+    bio === '' ||
     belt === '' ||
+    dojo === '' ||
     firstName === '' ||
     lastName === ''
   ) {
@@ -107,20 +109,6 @@ function requireLogin(req, res, next) {
   }
 }
 
-router.get('/history', requireLogin, async (req, res) => {
-  res.render('./history');
-});
-router.get('/mestres', requireLogin, async (req, res) => {
-  res.render('./masters');
-});
-
-router.get('/horarios', requireLogin, async (req, res) => {
-  res.render('./timetable');
-});
-router.get('/profile', requireLogin, async (req, res, next) => {
-  const currentUser = req.session.currentUser;
-  res.render('profile', { currentUser });
-});
 router.post('/logout', (req, res) => {
   req.session.destroy();
   res.redirect('/');
