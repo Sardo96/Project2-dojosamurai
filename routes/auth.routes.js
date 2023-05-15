@@ -16,7 +16,9 @@ router.post('/signup', async (req, res) => {
     username === '' ||
     email === '' ||
     password === '' ||
+    bio === '' ||
     belt === '' ||
+    dojo === '' ||
     firstName === '' ||
     lastName === ''
   ) {
@@ -99,6 +101,7 @@ router.post('/login', async (req, res) => {
   }
 });
 
+
 function requireLogin(req, res, next) {
   if (req.session.currentUser) {
     next();
@@ -107,16 +110,6 @@ function requireLogin(req, res, next) {
   }
 }
 
-router.get('/history', requireLogin, async (req, res) => {
-  res.render('./history');
-});
-router.get('/mestres', requireLogin, async (req, res) => {
-  res.render('./masters');
-});
-
-router.get('/horarios', requireLogin, async (req, res) => {
-  res.render('./timetable');
-});
 
 router.post('/logout', (req, res) => {
   req.session.destroy();

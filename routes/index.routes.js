@@ -3,6 +3,14 @@ const router = express.Router();
 
 const User = require('../models/User.model');
 
+function requireLogin(req, res, next) {
+  if (req.session.currentUser) {
+    next();
+  } else {
+    res.redirect('/login');
+  }
+}
+
 /* GET home page */
 router.get('/', (req, res, next) => {
   const currentUser = req.session.currentUser;
@@ -14,5 +22,32 @@ router.get('/profile', async (req, res, next) => {
   res.render('profile', {  currentUser });
 });
 
+router.get('/history', requireLogin, async (req, res) => {
+  res.render('./history');
+});
+router.get('/mestres', requireLogin, async (req, res) => {
+  res.render('./masters');
+});
+
+router.get('/horarios', requireLogin, async (req, res) => {
+  res.render('./timetable');
+});
+
+router.get('/katas', requireLogin, async (req, res) => {
+  const currentUser = req.session.currentUser;
+  const user = await User.findById(currentUser._id);
+  const belt = user.belt;
+  const branco = user.belt.includes('9th Kyu');
+  const amarelo = user.belt.includes('8th Kyu');
+  const laranja = user.belt.includes('7th Kyu');
+  const verde = user.belt.includes('6th Kyu');
+  const azul = user.belt.includes('5th Kyu');
+  const roxo = user.belt.includes('4th Kyu');
+  const castanho3 = user.belt.includes('3rd Kyu');
+  const castanho2 = user.belt.includes('2nd Kyu');
+  const castanho1 = user.belt.includes('1st Kyu');
+  const isSensei = user.isSensei;
+  res.render('./katas', { branco, amarelo, laranja, verde, azul, roxo, castanho3, castanho2, castanho1, isSensei });  
+});
 
 module.exports = router;
