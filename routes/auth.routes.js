@@ -117,7 +117,10 @@ router.get('/mestres', requireLogin, async (req, res) => {
 router.get('/horarios', requireLogin, async (req, res) => {
   res.render('./timetable');
 });
-
+router.get('/profile', requireLogin, async (req, res, next) => {
+  const currentUser = req.session.currentUser;
+  res.render('profile', { currentUser });
+});
 router.post('/logout', (req, res) => {
   req.session.destroy();
   res.redirect('/');
