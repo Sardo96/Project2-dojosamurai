@@ -17,7 +17,7 @@ router.get('/', (req, res, next) => {
   res.render('index', { currentUser });
 });
 
-router.get('/profile', async (req, res, next) => {
+router.get('/profile', requireLogin, async (req, res, next) => {
   const currentUser = req.session.currentUser;
   res.render('profile', { currentUser });
 });
