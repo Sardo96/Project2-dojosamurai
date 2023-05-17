@@ -60,5 +60,24 @@ router.get('/katas', requireLogin, async (req, res) => {
     isSensei
   });
 });
+router.get('/edit', requireLogin, async (req, res, next) => {
+  const currentUser = req.session.currentUser;
+  res.render('./edit', { currentUser });
+});
+router.post('/edit', requireLogin, async (req, res, next) => {
+  const currentUser = req.session.currentUser;
+  const { firstName, lastName, email, belt } = req.body;
 
+  try {
+    await User.findByIdAndUpdate(currentUser._id, {
+      firstName,
+      lastName,
+      email,
+      belt
+    });
+    res.redirect('/profile');
+  } catch (error) {
+    next(error);
+  }
+});
 module.exports = router;

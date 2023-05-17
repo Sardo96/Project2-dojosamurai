@@ -11,6 +11,7 @@
       integrity='sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ'
       crossorigin='anonymous'
     />
+
     <link rel='stylesheet' href='/stylesheets/style.css' />
   </head>
 
@@ -18,12 +19,13 @@
 
     <figure class='figure'>
       <img
+        id='banner'
         src='/images/banner.jpg'
         class='figure-img img-fluid rounded smaller-banner mx-auto d-block'
         alt='...'
       />
       <figcaption class='figure-caption'><nav
-          class='navbar navbar-expand-lg bg-body-tertiary'
+          class='navbar navbar-expand-lg bg-body-tertiary data-bs-theme="dark"'
         >
 
           <div class='container-fluid'>
@@ -70,7 +72,9 @@
               <ul class='dropdown-menu'>
                 <li><a class='dropdown-item' href='./login'>Login</a></li>
                 <li><a class='dropdown-item' href='./signup'>Signup</a></li>
-                <li><a class='dropdown-item' href='./profile'>Profile</a></li>
+                {{#if currentUser}}
+                  <li><a class='dropdown-item' href='./profile'>Profile</a></li>
+                {{/if}}
               </ul>
 
             </div>
@@ -86,6 +90,8 @@
             <form action='/logout' method='POST'>
               <button type='submit'> Logout</button>
             </form>
+            <a href='/katas' type='button' class='btn btn-link'>Training day</a>
+
           {{/if}}
         </nav></figcaption>
     </figure>
