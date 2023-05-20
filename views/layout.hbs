@@ -11,93 +11,73 @@
       integrity='sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ'
       crossorigin='anonymous'
     />
-
     <link rel='stylesheet' href='/stylesheets/style.css' />
+
   </head>
 
   <body>
 
-    <figure class='figure'>
-      <img
-        id='banner'
-        src='/images/banner.jpg'
-        class='figure-img img-fluid rounded smaller-banner mx-auto d-block'
-        alt='...'
-      />
-      <figcaption class='figure-caption'><nav
-          class='navbar navbar-expand-lg bg-body-tertiary'
-          data-bs-theme='dark'
+    <nav class='navbar navbar-expand-lg bg-body-tertiary'>
+      <div class='container-fluid'>
+        <a class='navbar-brand' href='#'>修交会</a>
+        <button
+          class='navbar-toggler'
+          type='button'
+          data-bs-toggle='collapse'
+          data-bs-target='#navbarNavDropdown'
+          aria-controls='navbarNavDropdown'
+          aria-expanded='false'
+          aria-label='Toggle navigation'
         >
+          <span class='navbar-toggler-icon'></span>
+        </button>
+        <div class='collapse navbar-collapse' id='navbarNavDropdown'>
+          <ul class='navbar-nav'>
+            <li class='nav-item'>
+              <a class='nav-link active' aria-current='page' href='/'>Home</a>
+            </li>
+            <li class='nav-item'>
+              <a class='nav-link' href='/history'>History</a>
+            </li>
+            <li class='nav-item'>
+              <a class='nav-link' href='/mestres'>Mestres</a>
+            </li>
+            <li class='nav-item'>
+              <a class='nav-link' href='/horarios'>Horários</a>
+            </li>
+          </ul>
 
-          <div class='container-fluid'>
-            <a class='navbar-brand' href='#'>修交会</a>
-            <button
-              class='navbar-toggler'
-              type='button'
-              data-bs-toggle='collapse'
-              data-bs-target='#navbarNavDropdown'
-              aria-controls='navbarNavDropdown'
-              aria-expanded='false'
-              aria-label='Toggle navigation'
-            >
-              <span class='navbar-toggler-icon'></span>
-            </button>
-            <div class='collapse navbar-collapse' id='navbarNavDropdown'>
-              <ul class='navbar-nav'>
-                <li class='nav-item'>
-                  <a
-                    class='nav-link active'
-                    aria-current='page'
-                    href='/'
-                  >Home</a>
-                </li>
-                <li class='nav-item'>
-                  <a class='nav-link' href='/history'>History</a>
-                </li>
-                <li class='nav-item'>
-                  <a class='nav-link' href='/mestres'>Mestres</a>
-                </li>
-                <li class='nav-item'>
-                  <a class='nav-link' href='/horarios'>Horários</a></li>
-              </ul>
+          <a
+            class='nav-link dropdown-toggle'
+            href='#'
+            role='button'
+            data-bs-toggle='dropdown'
+            aria-expanded='false'
+          >
+            Login/Signup
+          </a>
+          <ul class='dropdown-menu'>
+            <li><a class='dropdown-item' href='./login'>Login</a></li>
+            <li><a class='dropdown-item' href='./signup'>Signup</a></li>
+            {{#if currentUser}}
+              <li><a class='dropdown-item' href='./profile'>Profile</a></li>
+            {{/if}}
+          </ul>
+        </div>
+      </div>
+    </nav>
 
-              <a
-                class='nav-link dropdown-toggle'
-                href='#'
-                role='button'
-                data-bs-toggle='dropdown'
-                aria-expanded='false'
-              >
-                Login/singup
-              </a>
-              <ul class='dropdown-menu'>
-
-                <li><a class='dropdown-item' href='./login'>Login</a></li>
-                <li><a class='dropdown-item' href='./signup'>Signup</a></li>
-
-                {{#if currentUser}}
-                  <li><a class='dropdown-item' href='./profile'>Profile</a></li>
-                {{/if}}
-              </ul>
-
-            </div>
-          </div>
-        </nav>
-
-        <nav>
-          {{#if currentUser}}
-            <p>Welcome
-              {{currentUser.firstName}}
-              {{currentUser.lastName}}
-              {{currentUser.belt}}!</p>
-            <form action='/logout' method='POST'>
-              <button type='submit'> Logout</button>
-            </form>
-            <a href='/katas' type='button' class='btn btn-link'>Training day</a>
-
-          {{/if}}
-        </nav></figcaption>
-    </figure>
+    <nav>
+      {{#if currentUser}}
+        <p>Welcome
+          {{currentUser.firstName}}
+          {{currentUser.lastName}}
+          {{currentUser.belt}}!</p>
+        <form action='/logout' method='POST'>
+          <button type='submit'>Logout</button>
+        </form>
+      {{/if}}
+    </nav>
 
     {{{body}}}
 
