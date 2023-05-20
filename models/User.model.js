@@ -4,10 +4,20 @@ const { Schema, model } = require('mongoose');
 
 const userSchema = new Schema(
   {
+    firstName: {
+      type: String,
+      required: true,
+      trim: true
+    },
+    lastName: {
+      type: String,
+      require: true,
+      trim: true
+    },
     email: {
       type: String,
       required: true,
-
+      unique: true,
       lowercase: true,
       trim: true
     },
@@ -37,15 +47,14 @@ const userSchema = new Schema(
         '7th Dan'
       ]
     },
-    firstName: {
-      type: String,
-      required: true,
-      trim: true
+    lastGraded: {
+      type: Date,
+      required: true
     },
-    lastName: {
+    role: {
       type: String,
-      require: true,
-      trim: true
+      enum: ['student', 'instructor', 'admin'],
+      default: 'student'
     },
     dojo: {
       type: String,
@@ -56,15 +65,30 @@ const userSchema = new Schema(
       type: String,
       default: ''
     },
-    isSensei: {
-      type: Boolean,
-      default: false,
+    profilePic: {
+      type: String,
+      default:
+        'https://res.cloudinary.com/dq7uyauun/image/upload/v1614788923/P' +
+        Math.floor(Math.random() * 10) +
+        '.jpg',
+      trim: true
+    },
+    dateOfBirth: {
+      type: Date,
       required: true
     },
-    isStudent: {
-      type: Boolean,
-      default: true,
+    address: {
+      type: String,
       required: true
+    },
+    contactNumber: {
+      type: String,
+      required: true,
+      trim: true
+    },
+    emergencyContact: {
+      name: String,
+      contactNumber: String
     }
   },
   {

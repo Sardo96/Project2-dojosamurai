@@ -1,21 +1,35 @@
 <div class='alignform'>
   <h1>SignUp</h1>
 
+<form action='/signup' method='POST'>
   <form action='/signup' method='POST'>
 
-    <label> First Name:</label>
+    <label> Nome::</label>
     <input type='text' name='firstName' required />
 
-    <label> Last Name:</label>
+    <label> Apelido::</label>
     <input type='text' name='lastName' required />
 
-    <label> Email:</label>
+    <label> Email::</label>
     <input type='email' name='email' required />
 
-    <label> Password:</label>
-    <input type='password' name='password' />
+    <label> Password::</label>
+    <input type='password' name='password' required />
+
+  <label> Morada:</label>
+  <input type='text' name='address' required />
+
+  <label> Contacto telefónico:</label>
+  <input type='text' name='contactNumber' required />
+
+  <label> Contacto de emergência:</label>
+  <input type='text' name='emergencyContact' required />
+
+  <label> Data de nascimento:</label>
+  <input type='date' name='dateOfBirth' required />
+
     <hr />
-    <label for='belt'>Belt</label>
+    <label for='belt'>Belt:</label>
     <select id='belt' name='belt' required>
       <option value=''>Select a belt</option>
       <option value='9th Kyu'>9th Kyu</option>
@@ -36,6 +50,16 @@
       <option value='7th Dan'>7th Dan</option>
     </select>
 
+  <label for="lastGraded">Data última graduação</label>
+  <input type="date" name="lastGraded" id="lastGraded" title="Última Graduação">
+
+  <label for="dojo">Dojo</label>
+  <select name="dojo" id="dojo" required>
+    <option value="">Select a dojo</option>
+    <option value="Dojosamurai Rinchoa">Dojosamurai Rinchoa</option>
+    <option value="Dojosamurai Fitares">Dojosamurai Fitares</option>
+    <option value="Dojosamurai CGD">Dojosamurai CGD</option>
+  </select>
     <label for='dojo'>Dojo</label>
     <select name='dojo' id='dojo' required>
       <option value=''>Select a dojo</option>
@@ -44,12 +68,14 @@
       <option value='Dojosamurai CGD'>Dojosamurai CGD</option>
     </select>
 
+  <label for="bio">Bio:</label>
+  <textarea name="bio" id="bio" rows="2"></textarea>
     <label for='bio'>Bio:</label>
     <textarea name='bio' id='bio' rows='2'></textarea>
 
-    <button type='submit'>Create User</button>
-  </form>
+  <button type='submit'>Create User</button>
+</form>
 
-  {{#if errorMessage}}
-    <div style='color: red'>{{errorMessage}}</div>
-  {{/if}}</div>
+{{#if errorMessage}}
+  <div style='color: red'>{{errorMessage}}</div>
+{{/if}}

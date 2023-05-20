@@ -11,6 +11,69 @@ function requireLogin(req, res, next) {
   }
 }
 
+function formatDate(dateString) {
+  const date = new Date(dateString);
+  const year = date.getFullYear();
+  const month = String(date.getMonth() + 1).padStart(2, '0');
+  const day = String(date.getDate()).padStart(2, '0');
+  
+  const formattedDate = `${day}-${month}-${year}`;
+  return formattedDate;
+}
+
+function calculateAge(dateOfBirth) {
+  const today = new Date();
+  const birthDate = new Date(dateOfBirth);
+
+  let age = today.getFullYear() - birthDate.getFullYear();
+
+  const monthDiff = today.getMonth() - birthDate.getMonth();
+  if (monthDiff < 0 || (monthDiff === 0 && today.getDate() < birthDate.getDate())) {
+    age--;
+  }
+
+  return age;
+}
+function calculateRemainingTime(lastGradedDate, currentBeltRank) {
+  const today = new Date();
+  const lastGraded = new Date(lastGradedDate);
+
+  const waitingPeriods = {
+    '9th kyu': 1,
+    '8th kyu': 1,
+    '7th kyu': 1,
+    '6th kyu': 1,
+    '5th kyu': 1,
+    '4th kyu': 1,
+    '3rd kyu': 1,
+    '2nd kyu': 1,
+    '1st kyu': 1,
+    '1st dan': 1,
+    '2nd dan': 2,
+    '3rd dan': 3,
+    '4th dan': 4,
+    '5th dan': 5,
+    '6th dan': 6,
+    '7th dan': 7
+  };
+
+  const waitingPeriod = waitingPeriods[currentBeltRank] || 1;
+
+  const timeDiff = today - lastGraded;
+
+  const remainingTime = Math.max(0, waitingPeriod * 365 * 24 * 60 * 60 * 1000 - timeDiff);
+
+  const remainingYears = Math.floor(remainingTime / (365 * 24 * 60 * 60 * 1000));
+  const remainingMonths = Math.floor((remainingTime % (365 * 24 * 60 * 60 * 1000)) / (30 * 24 * 60 * 60 * 1000));
+  const remainingDays = Math.floor((remainingTime % (30 * 24 * 60 * 60 * 1000)) / (24 * 60 * 60 * 1000));
+
+  if(remainingYears === 0 && remainingMonths === 0 && remainingDays === 0){ 
+    return 'Parabéns! Podes graduar caso o Sensei autorize!';
+  } else {
+  return `Falta(m) ${remainingYears} ano(s), ${remainingMonths} mese(s) e ${remainingDays} dia(s) para a próxima graduação!`;
+  }
+}
+
 /* GET home page */
 router.get('/', (req, res, next) => {
   const currentUser = req.session.currentUser;
@@ -19,7 +82,11 @@ router.get('/', (req, res, next) => {
 
 router.get('/profile', async (req, res, next) => {
   const currentUser = req.session.currentUser;
-  res.render('profile', { currentUser });
+  const formattedLastGradedDate = formatDate(currentUser.lastGraded);
+  const formattedDateOfBirth = formatDate(currentUser.dateOfBirth);
+  const remainingTime = calculateRemainingTime(currentUser.lastGraded);
+  const age = calculateAge(currentUser.dateOfBirth);
+  res.render('profile', { currentUser, formattedLastGradedDate, age, formattedDateOfBirth, remainingTime });
 });
 
 router.get('/history', async (req, res) => {
@@ -46,7 +113,6 @@ router.get('/katas', requireLogin, async (req, res) => {
   const castanho3 = user.belt.includes('3rd Kyu');
   const castanho2 = user.belt.includes('2nd Kyu');
   const castanho1 = user.belt.includes('1st Kyu');
-  const isSensei = user.isSensei;
   res.render('./katas', {
     branco,
     amarelo,
@@ -57,7 +123,7 @@ router.get('/katas', requireLogin, async (req, res) => {
     castanho3,
     castanho2,
     castanho1,
-    isSensei
+    belt
   });
 });
 router.get('/edit', async (req, res, next) => {

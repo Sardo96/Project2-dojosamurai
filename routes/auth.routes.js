@@ -7,18 +7,36 @@ router.get('/signup', (req, res) => {
 });
 
 router.post('/signup', async (req, res) => {
-  const { email, password, bio, belt, dojo, firstName, lastName } = req.body;
-  let isSensei;
-  let isStudent;
+  const {
+    firstName,
+    lastName,
+    email,
+    password,
+    bio,
+    profilePic,
+    belt,
+    lastGraded,
+    dojo,
+    dateOfBirth,
+    address,
+    contactNumber,
+    emergencyContact
+  } = req.body;
+  let role = 'student';
 
   if (
+    firstName === '' ||
+    lastName === '' ||
     email === '' ||
     password === '' ||
     bio === '' ||
     belt === '' ||
+    lastGraded === '' ||
     dojo === '' ||
-    firstName === '' ||
-    lastName === ''
+    dateOfBirth === '' ||
+    address === '' ||
+    contactNumber === '' ||
+    emergencyContact === ''
   ) {
     res.render('auth/signup', { errorMessage: 'Fill in all fields' });
     return;
@@ -31,7 +49,7 @@ router.post('/signup', async (req, res) => {
     return;
   }
 
-  const user = await User.findOne({ firstName });
+  const user = await User.findOne({ email });
 
   if (user !== null) {
     res.render('auth/signup', { errorMessage: 'User already exists' });
@@ -41,30 +59,22 @@ router.post('/signup', async (req, res) => {
   const saltRounds = 10;
   const salt = bcrypt.genSaltSync(saltRounds);
   const hashedPassword = bcrypt.hashSync(password, salt);
-  if (
-    belt === '1st Dan' ||
-    belt === '2nd Dan' ||
-    belt === '3rd Dan' ||
-    belt === '4th Dan' ||
-    belt === '5th Dan' ||
-    belt === '6th Dan' ||
-    belt === '7th Dan'
-  ) {
-    (isSensei = true), (isStudent = false);
-  } else {
-    (isSensei = false), (isStudent = true);
-  }
 
   await User.create({
+    firstName,
+    lastName,
     email,
     password: hashedPassword,
     belt,
-    firstName,
-    lastName,
+    lastGraded,
+    role,
     dojo,
     bio,
-    isSensei,
-    isStudent
+    profilePic,
+    dateOfBirth,
+    address,
+    contactNumber,
+    emergencyContact
   });
 
   res.redirect('/');
@@ -83,7 +93,7 @@ router.post('/login', async (req, res) => {
   }
 
   const user = await User.findOne({ email });
-  if (!email) {
+  if (!user) {
     res.render('auth/signup', { errorMessage: 'Invalid Login' });
   }
 
