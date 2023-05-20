@@ -22,10 +22,10 @@ router.get('/profile', requireLogin, async (req, res, next) => {
   res.render('profile', { currentUser });
 });
 
-router.get('/history', requireLogin, async (req, res) => {
+router.get('/history', async (req, res) => {
   res.render('./history');
 });
-router.get('/mestres', requireLogin, async (req, res) => {
+router.get('/mestres', async (req, res) => {
   res.render('./masters');
 });
 
