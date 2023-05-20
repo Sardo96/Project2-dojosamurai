@@ -25,7 +25,8 @@
         alt='...'
       />
       <figcaption class='figure-caption'><nav
-          class='navbar navbar-expand-lg bg-body-tertiary data-bs-theme="dark"'
+          class='navbar navbar-expand-lg bg-body-tertiary'
+          data-bs-theme='dark'
         >
 
           <div class='container-fluid'>
@@ -70,8 +71,10 @@
                 Login/singup
               </a>
               <ul class='dropdown-menu'>
+
                 <li><a class='dropdown-item' href='./login'>Login</a></li>
                 <li><a class='dropdown-item' href='./signup'>Signup</a></li>
+
                 {{#if currentUser}}
                   <li><a class='dropdown-item' href='./profile'>Profile</a></li>
                 {{/if}}
