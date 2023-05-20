@@ -135,3 +135,12 @@ body {
 .nav-link {
   color: white;
 }
+.background {
+  background-color: rgb(185, 132, 0);
+}
+.accordioncolor {
+  background-color: rgb(185, 132, 0);
+}
+.alignform {
+  margin: 20px;
+}

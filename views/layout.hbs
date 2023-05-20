@@ -15,7 +15,7 @@
 
   </head>
 
-  <body>
+  <body class="background">
     <div class='banner'></div>
 
   <nav class="navbar navbar-expand-lg bg-body-tertiary" data-bs-theme='dark'>
@@ -25,7 +25,7 @@
         aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
-      <div class="collapse navbar-collapse" id="navbarNavDropdown">
+      <div class="collapse navbar-collapse nav justify-content-center" id="navbarNavDropdown">
         <ul class="navbar-nav">
           <li class="nav-item">
             <a class="nav-link active" aria-current="page" href="/">Home</a>
@@ -43,6 +43,11 @@
           <li class="nav-item">
             <a class="nav-link" href="/profile">Perfil</a>
           </li>
+          <li><a href='/katas' class='nav-link'>Training day</a></li>
+          <li><form action='/logout' method='POST'>
+          <button type='submit' class="position-absolute bottom-0 end-0">Logout</button>
+        </form></li>
+        
           {{/if}}
         </ul>
         {{#unless currentUser}}
@@ -59,16 +64,11 @@
 
     <nav>
       {{#if currentUser}}
-        <p>Welcome
+        <p class="text-center">Welcome
           {{currentUser.firstName}}
           {{currentUser.lastName}}
           {{currentUser.belt}}!</p>
-        <form action='/logout' method='POST'>
-          <button type='submit'>Logout</button>
-        </form>
-        <a href='/katas' type='button' class='btn btn-link'>Training day</a>
-
-      {{/if}}
+        {{/if}}
     </nav>
 
 

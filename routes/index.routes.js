@@ -17,7 +17,7 @@ router.get('/', (req, res, next) => {
   res.render('index', { currentUser });
 });
 
-router.get('/profile', requireLogin, async (req, res, next) => {
+router.get('/profile', async (req, res, next) => {
   const currentUser = req.session.currentUser;
   res.render('profile', { currentUser });
 });
@@ -60,11 +60,11 @@ router.get('/katas', requireLogin, async (req, res) => {
     isSensei
   });
 });
-router.get('/edit', requireLogin, async (req, res, next) => {
+router.get('/edit', async (req, res, next) => {
   const currentUser = req.session.currentUser;
   res.render('./edit', { currentUser });
 });
-router.post('/edit', requireLogin, async (req, res, next) => {
+router.post('/edit', async (req, res, next) => {
   const currentUser = req.session.currentUser;
   const { firstName, lastName, email, belt } = req.body;
 
@@ -75,7 +75,11 @@ router.post('/edit', requireLogin, async (req, res, next) => {
       email,
       belt
     });
-    res.redirect('/profile');
+    req.session.currentUser.firstName = firstName;
+    req.session.currentUser.lastName = lastName;
+    req.session.currentUser.email = email;
+    req.session.currentUser.belt = belt;
+    res.redirect(`/profile/${req.query.id}`);
   } catch (error) {
     next(error);
   }

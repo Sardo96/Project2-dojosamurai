@@ -1,15 +1,16 @@
-<h1>Sign In</h1>
+<div class='alignform'>
+  <h1>LogIn</h1>
 
-<form action='/login' method='POST'>
-  <label> Username</label>
-  <input type='text' name='username' required />
+  <form action='/login' method='POST'>
+    <label> Email:</label>
+    <input type='email' name='email' required />
 
-  <label> Password</label>
-  <input type='password' name='password' required />
+    <label> Password:</label>
+    <input type='password' name='password' required />
 
-  <button type='submit'> Login </button>
-</form>
-
+    <button type='submit'> Login </button>
+  </form>
+</div>
 {{#if errorMessage}}
   <div style='color: red'>{{errorMessage}}</div>
 {{/if}}

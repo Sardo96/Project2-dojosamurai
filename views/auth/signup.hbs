@@ -1,56 +1,55 @@
-<h1>Sign Up</h1>
+<div class='alignform'>
+  <h1>SignUp</h1>
 
-<form action='/signup' method='POST'>
-  <label> Username</label>
-  <input type='text' name='username' required />
+  <form action='/signup' method='POST'>
 
-  <label> First Name</label>
-  <input type='text' name='firstName' required />
+    <label> First Name:</label>
+    <input type='text' name='firstName' required />
 
-  <label> Last Name</label>
-  <input type='text' name='lastName' required />
+    <label> Last Name:</label>
+    <input type='text' name='lastName' required />
 
-  <label> Email</label>
-  <input type='email' name='email' required />
+    <label> Email:</label>
+    <input type='email' name='email' required />
 
-  <label> Password</label>
-  <input type='password' name='password' />
+    <label> Password:</label>
+    <input type='password' name='password' />
+    <hr />
+    <label for='belt'>Belt</label>
+    <select id='belt' name='belt' required>
+      <option value=''>Select a belt</option>
+      <option value='9th Kyu'>9th Kyu</option>
+      <option value='8th Kyu'>8th Kyu</option>
+      <option value='7th Kyu'>7th Kyu</option>
+      <option value='6th Kyu'>6th Kyu</option>
+      <option value='5th Kyu'>5th Kyu</option>
+      <option value='4th Kyu'>4th Kyu</option>
+      <option value='3rd Kyu'>3rd Kyu</option>
+      <option value='2nd Kyu'>2nd Kyu</option>
+      <option value='1st Kyu'>1st Kyu</option>
+      <option value='1st Dan'>1st Dan</option>
+      <option value='2nd Dan'>2nd Dan</option>
+      <option value='3rd Dan'>3rd Dan</option>
+      <option value='4th Dan'>4th Dan</option>
+      <option value='5th Dan'>5th Dan</option>
+      <option value='6th Dan'>6th Dan</option>
+      <option value='7th Dan'>7th Dan</option>
+    </select>
 
-  <label for="belt">Belt</label>
-  <select id="belt" name="belt" required>
-    <option value="">Select a belt</option>
-    <option value="9th Kyu">9th Kyu</option>
-    <option value="8th Kyu">8th Kyu</option>
-    <option value="7th Kyu">7th Kyu</option>
-    <option value="6th Kyu">6th Kyu</option>
-    <option value="5th Kyu">5th Kyu</option>
-    <option value="4th Kyu">4th Kyu</option>
-    <option value="3rd Kyu">3rd Kyu</option>
-    <option value="2nd Kyu">2nd Kyu</option>
-    <option value="1st Kyu">1st Kyu</option>
-    <option value="1st Dan">1st Dan</option>
-    <option value="2nd Dan">2nd Dan</option>
-    <option value="3rd Dan">3rd Dan</option>
-    <option value="4th Dan">4th Dan</option>
-    <option value="5th Dan">5th Dan</option>
-    <option value="6th Dan">6th Dan</option>
-    <option value="7th Dan">7th Dan</option>
-  </select>
+    <label for='dojo'>Dojo</label>
+    <select name='dojo' id='dojo' required>
+      <option value=''>Select a dojo</option>
+      <option value='Dojosamurai Rinchoa'>Dojosamurai Rinchoa</option>
+      <option value='Dojosamurai Fitares'>Dojosamurai Fitares</option>
+      <option value='Dojosamurai CGD'>Dojosamurai CGD</option>
+    </select>
 
-  <label for="dojo">Dojo</label>
-  <select name="dojo" id="dojo" required>
-    <option value="">Select a dojo</option>
-    <option value="Dojosamurai Rinchoa">Dojosamurai Rinchoa</option>
-    <option value="Dojosamurai Fitares">Dojosamurai Fitares</option>
-    <option value="Dojosamurai CGD">Dojosamurai CGD</option>
-  </select>
+    <label for='bio'>Bio:</label>
+    <textarea name='bio' id='bio' rows='2'></textarea>
 
-  <label for="bio">Bio:</label>
-  <textarea name="bio" id="bio" rows="4"></textarea>
+    <button type='submit'>Create User</button>
+  </form>
 
-  <button type='submit'>Create User</button>
-</form>
-
-{{#if errorMessage}}
-  <div style='color: red'>{{errorMessage}}</div>
-{{/if}}
+  {{#if errorMessage}}
+    <div style='color: red'>{{errorMessage}}</div>
+  {{/if}}</div>

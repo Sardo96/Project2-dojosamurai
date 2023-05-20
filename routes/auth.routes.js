@@ -7,13 +7,11 @@ router.get('/signup', (req, res) => {
 });
 
 router.post('/signup', async (req, res) => {
-  const { username, email, password, bio, belt, dojo, firstName, lastName } =
-    req.body;
+  const { email, password, bio, belt, dojo, firstName, lastName } = req.body;
   let isSensei;
   let isStudent;
 
   if (
-    username === '' ||
     email === '' ||
     password === '' ||
     bio === '' ||
@@ -33,7 +31,7 @@ router.post('/signup', async (req, res) => {
     return;
   }
 
-  const user = await User.findOne({ username });
+  const user = await User.findOne({ firstName });
 
   if (user !== null) {
     res.render('auth/signup', { errorMessage: 'User already exists' });
@@ -58,7 +56,6 @@ router.post('/signup', async (req, res) => {
   }
 
   await User.create({
-    username,
     email,
     password: hashedPassword,
     belt,
@@ -78,15 +75,15 @@ router.get('/login', (req, res) => {
 });
 
 router.post('/login', async (req, res) => {
-  const { username, password } = req.body;
+  const { email, password } = req.body;
 
-  if (!username || !password) {
-    res.render('auth/signup', { errorMessage: 'IOnvalid login' });
+  if (!email || !password) {
+    res.render('auth/signup', { errorMessage: 'Invalid login' });
     return;
   }
 
-  const user = await User.findOne({ username });
-  if (!user) {
+  const user = await User.findOne({ email });
+  if (!email) {
     res.render('auth/signup', { errorMessage: 'Invalid Login' });
   }
 
