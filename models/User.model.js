@@ -4,16 +4,20 @@ const { Schema, model } = require('mongoose');
 
 const userSchema = new Schema(
   {
-    username: {
+    firstName: {
       type: String,
-      trim: true,
       required: true,
-      unique: true
+      trim: true
+    },
+    lastName: {
+      type: String,
+      require: true,
+      trim: true
     },
     email: {
       type: String,
       required: true,
-
+      unique: true,
       lowercase: true,
       trim: true
     },
@@ -26,15 +30,14 @@ const userSchema = new Schema(
       required: true,
       enum: ['9th Kyu', '8th Kyu', '7th Kyu', '6th Kyu', '5th Kyu', '4th Kyu', '3rd Kyu', '2nd Kyu', '1st Kyu', '1st Dan', '2nd Dan', '3rd Dan', '4th Dan', '5th Dan', '6th Dan', '7th Dan']
     },
-    firstName: {
-      type: String,
-      required: true,
-      trim: true
+    lastGraded: {
+      type: Date,
+      required: true
     },
-    lastName: {
+    role: {
       type: String,
-      require: true,
-      trim: true
+      enum: ['student', 'instructor', 'admin'],
+      default: 'student'
     },
     dojo: {
       type: String,
@@ -45,15 +48,27 @@ const userSchema = new Schema(
       type: String,
       default: ''
     },
-    isSensei: {
-      type: Boolean,
-      default: false,
+    profilePic: {
+      type: String,
+      default: 'https://res.cloudinary.com/dq7uyauun/image/upload/v1614788923/P' +  Math.floor(Math.random() * 10) + '.jpg',
+      trim: true
+    },
+    dateOfBirth: {
+      type: Date,
       required: true
     },
-    isStudent: {
-      type: Boolean,
-      default: true,
+    address: {
+      type: String,
       required: true
+    },
+    contactNumber: {
+      type: String,
+      required: true,
+      trim: true
+    },
+    emergencyContact: {
+      name: String,
+      contactNumber: String
     }
 
   },

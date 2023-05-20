@@ -4,9 +4,38 @@
     <strong>Email:</strong>
     {{currentUser.email}}
   </p>
+
+  <p>
+    <strong>Data de Nascimento:</strong>
+    {{ formattedDateOfBirth }} ({{ age }} anos) 
   <p>
     <strong>Belt Level:</strong>
     {{currentUser.belt}}
+  </p>
+
+  <p>
+    <strong>Last Graded:</strong>
+    {{ formattedLastGradedDate }} ({{ remainingTime }})
+  </p>
+
+  <p>
+    <strong>Dojo:</strong>
+    {{currentUser.dojo}}
+  </p>
+
+  <p>
+    <strong>Morada:</strong>
+    {{currentUser.address}}
+  </p>
+
+  <p>
+    <strong>Contacto telefónico:</strong>
+    {{currentUser.contactNumber}}
+  </p>
+
+  <p>
+    <strong>Contacto de emergência:</strong>
+    {{currentUser.emergencyContact}}
   </p>
 
   <p>

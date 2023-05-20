@@ -18,6 +18,7 @@ const hbs = require('hbs');
 const helpers = require('handlebars-helpers');
 hbs.registerHelper(helpers());
 
+
 const app = express();
 
 // ℹ️ This function is getting exported from the config folder. It runs most pieces of middleware
@@ -33,7 +34,7 @@ app.use(
     cookie: {
       sameSite: true, //front end and backend are running in the same site
       httpOnly: true, //we are not using https
-      maxAge: 60000 //session time in milisseconds
+      maxAge: 120000 //session time in milisseconds
     },
     rolling: true,
     store: new mongoStore({
