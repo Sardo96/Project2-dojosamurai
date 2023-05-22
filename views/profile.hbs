@@ -1,47 +1,54 @@
-<div>
-  <h2>{{currentUser.firstName}} {{currentUser.lastName}}</h2>
-  <p>
-    <strong>Email:</strong>
-    {{currentUser.email}}
-  </p>
-
-  <p>
-    <strong>Data de Nascimento:</strong>
-    {{ formattedDateOfBirth }} ({{ age }} anos) 
-  <p>
-    <strong>Belt Level:</strong>
-    {{currentUser.belt}}
-  </p>
-
-  <p>
-    <strong>Last Graded:</strong>
-    {{ formattedLastGradedDate }} ({{ remainingTime }})
-  </p>
-
-  <p>
-    <strong>Dojo:</strong>
-    {{currentUser.dojo}}
-  </p>
-
-  <p>
-    <strong>Morada:</strong>
-    {{currentUser.address}}
-  </p>
-
-  <p>
-    <strong>Contacto telefónico:</strong>
-    {{currentUser.contactNumber}}
-  </p>
-
-  <p>
-    <strong>Contacto de emergência:</strong>
-    {{currentUser.emergencyContact}}
-  </p>
-
-  <p>
-    <strong>Bio:</strong>
-    {{currentUser.isStudent}}
-  </p>
+<div class='container imgbackground'>
+  <div class='row'>
+    <div class='col-md-6 offset-md-3'>
+      <div class='card mt-5'>
+        <div class='card-body cardbackcolor'>
+          <h2 class='card-title'>{{currentUser.firstName}}
+            {{currentUser.lastName}}</h2>
+          <p class='card-text'>
+            <strong>Email:</strong>
+            {{currentUser.email}}
+          </p>
+          <p class='card-text'>
+            <strong>Data de Nascimento:</strong>
+            {{formattedDateOfBirth}}
+            ({{age}}
+            anos)
+          </p>
+          <p class='card-text'>
+            <strong>Belt Level:</strong>
+            {{currentUser.belt}}
+          </p>
+          <p class='card-text'>
+            <strong>Last Graded:</strong>
+            {{formattedLastGradedDate}}
+            ({{remainingTime}})
+          </p>
+          <p class='card-text'>
+            <strong>Dojo:</strong>
+            {{currentUser.dojo}}
+          </p>
+          <p class='card-text'>
+            <strong>Morada:</strong>
+            {{currentUser.address}}
+          </p>
+          <p class='card-text'>
+            <strong>Contacto telefónico:</strong>
+            {{currentUser.contactNumber}}
+          </p>
+          <p class='card-text'>
+            <strong>Contacto de emergência:</strong>
+            {{currentUser.emergencyContact}}
+          </p>
+          <p class='card-text'>
+            <strong>Bio:</strong>
+            {{currentUser.isStudent}}
+          </p>
+        </div>
+        <div class='card-footer cardbackcolor'>
+          <a href='/edit' class='btn btn-link'>Edit</a>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
-
-<a href='/edit' type='button' class='btn btn-link'>Edit</a>

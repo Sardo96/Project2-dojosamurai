@@ -1,16 +1,32 @@
-<div class='alignform'>
-  <h1>LogIn</h1>
+<div class='container'>
+  <div class='row'>
+    <div class='col-md-6 offset-md-3'>
+      <div class='alignform'>
+        <h1 class='text-center'>LogIn</h1>
 
-  <form action='/login' method='POST'>
-    <label> Email</label>
-    <input type='email' name='email' required />
+        <form action='/login' method='POST'>
+          <div class='form-group'>
+            <label for='email'>Email:</label>
+            <input type='email' class='form-control' name='email' required />
+          </div>
 
-    <label> Password:</label>
-    <input type='password' name='password' required />
+          <div class='form-group'>
+            <label for='password'>Password:</label>
+            <input
+              type='password'
+              class='form-control'
+              name='password'
+              required
+            />
+          </div>
 
-    <button type='submit'> Login </button>
-  </form>
+          <button type='submit' class='btn btn-primary'>Login</button>
+        </form>
+
+        {{#if errorMessage}}
+          <div style='color: red'>{{errorMessage}}</div>
+        {{/if}}
+      </div>
+    </div>
+  </div>
 </div>
-{{#if errorMessage}}
-  <div style='color: red'>{{errorMessage}}</div>
-{{/if}}

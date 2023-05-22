@@ -136,11 +136,25 @@ body {
   color: white;
 }
 .background {
-  background-color: rgb(185, 132, 0);
+  background-color: rgb(194, 106, 24);
 }
 .accordioncolor {
-  background-color: rgb(185, 132, 0);
+  background-color: rgb(194, 106, 24);
 }
 .alignform {
   margin: 20px;
+}
+.cardbackcolor {
+  background-color: #dcbf02;
+}
+.backimage {
+  background-image: url('/images/Dojo-shomen.jpg');
+  background-size: cover;
+  background-position: center;
+}
+.color {
+  color: #fa0505;
+  font-family: 'Times New Roman', Times, serif;
+  font-size: large;
+  font-weight: bolder;
 }

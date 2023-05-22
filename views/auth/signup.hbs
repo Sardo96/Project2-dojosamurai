@@ -1,81 +1,128 @@
-<div class='alignform'>
-  <h1>SignUp</h1>
+<div class='container'>
+  <div class='row'>
+    <div class='col-md-6 offset-md-3'>
+      <h1 class='text-center'>SignUp</h1>
 
-<form action='/signup' method='POST'>
-  <form action='/signup' method='POST'>
+      <form action='/signup' method='POST'>
 
-    <label> Nome::</label>
-    <input type='text' name='firstName' required />
+        <div class='form-group'>
+          <label for='firstName'>Nome:</label>
+          <input type='text' class='form-control' name='firstName' required />
+        </div>
 
-    <label> Apelido::</label>
-    <input type='text' name='lastName' required />
+        <div class='form-group'>
+          <label for='lastName'>Apelido:</label>
+          <input type='text' class='form-control' name='lastName' required />
+        </div>
 
-    <label> Email::</label>
-    <input type='email' name='email' required />
+        <div class='form-group'>
+          <label for='email'>Email:</label>
+          <input type='email' class='form-control' name='email' required />
+        </div>
 
-    <label> Password::</label>
-    <input type='password' name='password' required />
+        <div class='form-group'>
+          <label for='password'>Password:</label>
+          <input
+            type='password'
+            class='form-control'
+            name='password'
+            required
+          />
+        </div>
 
-  <label> Morada:</label>
-  <input type='text' name='address' required />
+        <div class='form-group'>
+          <label for='address'>Morada:</label>
+          <input type='text' class='form-control' name='address' required />
+        </div>
 
-  <label> Contacto telefónico:</label>
-  <input type='text' name='contactNumber' required />
+        <div class='form-group'>
+          <label for='contactNumber'>Contacto telefónico:</label>
+          <input
+            type='tel'
+            class='form-control'
+            name='contactNumber'
+            required
+          />
+        </div>
 
-  <label> Contacto de emergência:</label>
-  <input type='text' name='emergencyContact' required />
+        <div class='form-group'>
+          <label for='emergencyContact'>Contacto de emergência:</label>
+          <input
+            type='tel'
+            class='form-control'
+            name='emergencyContact'
+            required
+          />
+        </div>
 
-  <label> Data de nascimento:</label>
-  <input type='date' name='dateOfBirth' required />
+        <div class='form-group'>
+          <label for='dateOfBirth'>Data de nascimento:</label>
+          <input type='date' class='form-control' name='dateOfBirth' required />
+        </div>
 
-    <hr />
-    <label for='belt'>Belt:</label>
-    <select id='belt' name='belt' required>
-      <option value=''>Select a belt</option>
-      <option value='9th Kyu'>9th Kyu</option>
-      <option value='8th Kyu'>8th Kyu</option>
-      <option value='7th Kyu'>7th Kyu</option>
-      <option value='6th Kyu'>6th Kyu</option>
-      <option value='5th Kyu'>5th Kyu</option>
-      <option value='4th Kyu'>4th Kyu</option>
-      <option value='3rd Kyu'>3rd Kyu</option>
-      <option value='2nd Kyu'>2nd Kyu</option>
-      <option value='1st Kyu'>1st Kyu</option>
-      <option value='1st Dan'>1st Dan</option>
-      <option value='2nd Dan'>2nd Dan</option>
-      <option value='3rd Dan'>3rd Dan</option>
-      <option value='4th Dan'>4th Dan</option>
-      <option value='5th Dan'>5th Dan</option>
-      <option value='6th Dan'>6th Dan</option>
-      <option value='7th Dan'>7th Dan</option>
-    </select>
+        <hr />
 
-  <label for="lastGraded">Data última graduação</label>
-  <input type="date" name="lastGraded" id="lastGraded" title="Última Graduação">
+        <div class='form-group'>
+          <label for='belt'>Belt:</label>
+          <select id='belt' class='form-control' name='belt' required>
+            <option value=''>Select a belt</option>
+            <option value='9th Kyu'>9th Kyu</option>
+            <option value='8th Kyu'>8th Kyu</option>
+            <option value='7th Kyu'>7th Kyu</option>
+            <option value='6th Kyu'>6th Kyu</option>
+            <option value='5th Kyu'>5th Kyu</option>
+            <option value='4th Kyu'>4th Kyu</option>
+            <option value='3rd Kyu'>3rd Kyu</option>
+            <option value='2nd Kyu'>2nd Kyu</option>
+            <option value='1st Kyu'>1st Kyu</option>
+            <option value='1st Dan'>1st Dan</option>
+            <option value='2nd Dan'>2nd Dan</option>
+            <option value='3rd Dan'>3rd Dan</option>
+            <option value='4th Dan'>4th Dan</option>
+            <option value='5th Dan'>5th Dan</option>
+            <option value='6th Dan'>6th Dan</option>
+            <option value='7th Dan'>7th Dan</option>
+          </select>
+        </div>
 
-  <label for="dojo">Dojo</label>
-  <select name="dojo" id="dojo" required>
-    <option value="">Select a dojo</option>
-    <option value="Dojosamurai Rinchoa">Dojosamurai Rinchoa</option>
-    <option value="Dojosamurai Fitares">Dojosamurai Fitares</option>
-    <option value="Dojosamurai CGD">Dojosamurai CGD</option>
-  </select>
-    <label for='dojo'>Dojo</label>
-    <select name='dojo' id='dojo' required>
-      <option value=''>Select a dojo</option>
-      <option value='Dojosamurai Rinchoa'>Dojosamurai Rinchoa</option>
-      <option value='Dojosamurai Fitares'>Dojosamurai Fitares</option>
-      <option value='Dojosamurai CGD'>Dojosamurai CGD</option>
-    </select>
+        <div class='form-group'>
+          <label for='lastGraded'>Data última graduação:</label>
+          <input
+            type='date'
+            class='form-control'
+            name='lastGraded'
+            id='lastGraded'
+            title='Última Graduação'
+          />
+        </div>
 
-  <label for="bio">Bio:</label>
-  <textarea name="bio" id="bio" rows="2"></textarea>
-    <label for='bio'>Bio:</label>
-    <textarea name='bio' id='bio' rows='2'></textarea>
+        <div class='form-group'>
+          <label for='dojo'>Dojo:</label>
+          <select class='form-control' name='dojo' id='dojo' required>
+            <option value=''>Select a dojo</option>
+            <option value='Dojosamurai Rinchoa'>Dojosamurai Rinchoa</option>
+            <option value='Dojosamurai Fitares'>Dojosamurai Fitares</option>
+            <option value='Dojosamurai CGD'>Dojosamurai CGD</option>
+          </select>
+        </div>
 
-  <button type='submit'>Create User</button>
-</form>
+        <div class='form-group'>
+          <label for='bio'>Bio:</label>
+          <textarea
+            class='form-control'
+            name='bio'
+            id='bio'
+            rows='2'
+          ></textarea>
+        </div>
 
-{{#if errorMessage}}
-  <div style='color: red'>{{errorMessage}}</div>
-{{/if}}
+        <button type='submit' class='btn btn-primary'>Create User</button>
+
+      </form>
+
+      {{#if errorMessage}}
+        <div style='color: red'>{{errorMessage}}</div>
+      {{/if}}
+    </div>
+  </div>
+</div>
