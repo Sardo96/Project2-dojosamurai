@@ -12,7 +12,7 @@ router.post('/signup', async (req, res) => {
     lastName,
     email,
     password,
-    bio,
+    senseiFeedback,
     profilePic,
     belt,
     lastGraded,
@@ -29,7 +29,6 @@ router.post('/signup', async (req, res) => {
     lastName === '' ||
     email === '' ||
     password === '' ||
-    bio === '' ||
     belt === '' ||
     lastGraded === '' ||
     dojo === '' ||
@@ -69,7 +68,7 @@ router.post('/signup', async (req, res) => {
     lastGraded,
     role,
     dojo,
-    bio,
+    senseiFeedback,
     profilePic,
     dateOfBirth,
     address,

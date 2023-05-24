@@ -3,6 +3,15 @@ const router = express.Router();
 
 const User = require('../models/User.model');
 
+function checkAdminRole(req, res, next) {
+  const user = req.session.currentUser;
+  if (user.role === 'admin') {
+    next();
+  } else {
+    res.status(403).send('Acesso negado. Você não é um administrador.');
+  }
+}
+
 function requireLogin(req, res, next) {
   if (req.session.currentUser) {
     next();
@@ -75,7 +84,7 @@ function calculateRemainingTime(lastGradedDate, currentBeltRank) {
 }
 
 /* GET home page */
-router.get('/', (req, res, next) => {
+router.get('/', async (req, res, next) => {
   const currentUser = req.session.currentUser;
   res.render('index', { currentUser });
 });
@@ -126,6 +135,13 @@ router.get('/katas', requireLogin, async (req, res) => {
     belt
   });
 });
+
+router.get('/alunos', requireLogin, checkAdminRole, async (req, res) => {
+  const currentUser = req.session.currentUser;
+  const users = await User.find();
+  res.render('./alunos', { users, currentUser });
+});
+
 router.get('/edit', async (req, res, next) => {
   const currentUser = req.session.currentUser;
   res.render('./edit', { currentUser });
