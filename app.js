@@ -34,7 +34,7 @@ app.use(
     cookie: {
       sameSite: true, //front end and backend are running in the same site
       httpOnly: true, //we are not using https
-      maxAge: 120000 //session time in milisseconds
+      maxAge: 300000 //session time in milisseconds
     },
     rolling: true,
     store: new mongoStore({
