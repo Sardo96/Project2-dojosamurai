@@ -1,5 +1,4 @@
 <html lang='en'>
-
   <head>
     <meta charset='UTF-8' />
     <meta name='viewport' content='width=device-width, initial-scale=1.0' />
@@ -12,86 +11,110 @@
       crossorigin='anonymous'
     />
     <link rel='stylesheet' href='/stylesheets/style.css' />
-
   </head>
 
-  <body class="background">
+  <body class='background'>
     <div class='banner'></div>
 
-  <nav class="navbar navbar-expand-lg bg-body-tertiary" data-bs-theme='dark'>
-    <div class="container-fluid">
-      <a class="navbar-brand" href="#">修交会</a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown"
-        aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse nav justify-content-center" id="navbarNavDropdown">
-        <ul class="navbar-nav">
-          <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="/">Home</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="/history">History</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="/mestres">Mestres</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="/horarios">Horários</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="/alunos">Gerir Alunos</a>
-          </li>
-          {{#if currentUser}}
-          <li class="nav-item">
-            <a class="nav-link" href="/profile">Perfil</a>
-          </li>
-          <li><a href='/katas' class='nav-link'>Training day</a></li>
-          <li><form action='/logout' method='POST'>
-          <button type='submit' class="position-absolute bottom-0 end-0">Logout</button>
-        </form></li>
-        
-          {{/if}}
-        </ul>
-        {{#unless currentUser}}
-        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-          Login/Signup
-        </a>
-        <ul class="dropdown-menu">
-          <li><a class="dropdown-item" href="./login">Login</a></li>
-          <li><a class="dropdown-item" href="./signup">Signup</a></li>
-        </ul>
-        {{/unless}}
+    <nav class='navbar navbar-expand-lg bg-body-tertiary' data-bs-theme='dark'>
+      <div class='container-fluid'>
+        {{#if currentUser}}
+          <a class='navbar-brand' href='/profile'>
+            <div class='d-flex align-items-center'>
+              <img
+                src='/images/ryu.gif'
+                alt='Mini Karateka'
+                class='mini-karateka-img'
+              />
+              <span class='ms-2'>Bem-Vindo,
+                {{currentUser.firstName}}
+                {{currentUser.lastName}}! Cinturão:
+                {{currentUser.belt}}.</span>
+            </div>
+          </a>
+        {{/if}}
+        <button
+          class='navbar-toggler'
+          type='button'
+          data-bs-toggle='collapse'
+          data-bs-target='#navbarNavDropdown'
+          aria-controls='navbarNavDropdown'
+          aria-expanded='false'
+          aria-label='Toggle navigation'
+        >
+          <span class='navbar-toggler-icon'></span>
+        </button>
+       {{#if currentUser}} <div
+          class='collapse navbar-collapse justify-content-start'
+          id='navbarNavDropdown'
+        >{{else}} <div
+          class='collapse navbar-collapse justify-content-center'
+          id='navbarNavDropdown'
+        >{{/if}}
+          <ul class='navbar-nav'>
+            <li class='nav-item'>
+              <a class='nav-link active' aria-current='page' href='/'>Home</a>
+            </li>
+            <li class='nav-item'>
+              <a class='nav-link' href='/history'>História</a>
+            </li>
+            <li class='nav-item'>
+              <a class='nav-link' href='/mestres'>Mestres</a>
+            </li>
+            <li class='nav-item'>
+              <a class='nav-link' href='/horarios'>Horários</a>
+            </li>
+            <li class='nav-item'>
+              <a class='nav-link' href='/alunos'>Gerir Alunos</a>
+            </li>
+            {{#if currentUser}}
+              <li class='nav-item'>
+                <a class='nav-link' href='/profile'>Perfil</a>
+              </li>
+              <li>
+                <a href='/katas' class='nav-link'>Treino Diário</a>
+              </li>
+              <li>
+                <form action='/logout' method='POST'>
+                  <button
+                    type='submit'
+                    class='position-absolute bottom-0 end-0'
+                  >Logout</button>
+                </form>
+              </li>
+            {{/if}}
+          </ul>
+          {{#unless currentUser}}
+            <a
+              class='nav-link dropdown-toggle'
+              href='#'
+              role='button'
+              data-bs-toggle='dropdown'
+              aria-expanded='false'
+            >
+              Login/Signup
+            </a>
+            <ul class='dropdown-menu'>
+              <li>
+                <a class='dropdown-item' href='./login'>Login</a>
+              </li>
+              <li>
+                <a class='dropdown-item' href='./signup'>Signup</a>
+              </li>
+            </ul>
+          {{/unless}}
+        </div>
       </div>
     </nav>
 
-<main>
-  <div class="container welcomesage">
-    <div class="row justify-content-end welcome-message">
-      <div class="col-md-3">
-        {{#if currentUser}}
-        <div class="card text-center small-card">
-          <div class="card-body">
-            <div class="d-flex align-items-center justify-content-center">
-              <img src="/images/ryu.gif" alt="Mini Karateka" class="mini-karateka-img">
-              <h5 class="card-title ms-3">Welcome, {{currentUser.firstName}} {{currentUser.lastName}}!</h5>
-            </div>
-            <h6 class="card-subtitle mb-2 text-muted"><strong>Belt: {{currentUser.belt}}.</strong></h6>
-          </div>
-        </div>
-        {{/if}}
-      </div>
-    </div>
-  </div>
-</main>
+    {{{body}}}
 
-
-  {{{body}}}
-
-  <script src="/js/script.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"
-    integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous"></script>
-
-</body>
+    <script src='/js/script.js'></script>
+    <script
+      src='https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js'
+      integrity='sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe'
+      crossorigin='anonymous'
+    ></script>
+  </body>
 
 </html>

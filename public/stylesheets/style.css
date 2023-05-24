@@ -159,10 +159,12 @@ body {
   background-position: center;
 }
 .color {
-  color: #fa0505;
+  color: rgb(249, 4, 4);
+  background-color: black;
   font-family: monospace;
   font-size: large;
   font-weight: bolder;
+  margin-top: 20px;
 }
 .accordioncolorfront {
   background-color: #d84213;
@@ -172,9 +174,13 @@ h3 {
   background-color: black;
   width: fit-content;
 }
-.welcome-message {
-  font-size: 10px;
-}
+
 .belt-info {
   margin-left: 2%;
+}
+.mini-karateka-img {
+  width: 10%;
+  height: 10%;
+  font-size: 10px;
+  margin-right: 0;
 }
