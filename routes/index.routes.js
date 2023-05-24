@@ -89,7 +89,7 @@ router.get('/', async (req, res, next) => {
   res.render('index', { currentUser });
 });
 
-router.get('/profile', async (req, res, next) => {
+router.get('/perfil', requireLogin, async (req, res, next) => {
   const currentUser = req.session.currentUser;
   const formattedLastGradedDate = formatDate(currentUser.lastGraded);
   const formattedDateOfBirth = formatDate(currentUser.dateOfBirth);
@@ -98,7 +98,7 @@ router.get('/profile', async (req, res, next) => {
   res.render('profile', { currentUser, formattedLastGradedDate, age, formattedDateOfBirth, remainingTime });
 });
 
-router.get('/history', async (req, res) => {
+router.get('/historia', async (req, res) => {
   res.render('./history');
 });
 router.get('/mestres', async (req, res) => {
@@ -139,28 +139,63 @@ router.get('/katas', requireLogin, async (req, res) => {
 router.get('/alunos', requireLogin, checkAdminRole, async (req, res) => {
   const currentUser = req.session.currentUser;
   const users = await User.find();
-  res.render('./alunos', { users, currentUser });
+  try {
+    res.render('./students', { users, currentUser });
+  } catch (e) {
+    console.log(e);
+  }
 });
 
-router.get('/edit', async (req, res, next) => {
-  const currentUser = req.session.currentUser;
-  res.render('./edit', { currentUser });
+router.get('/alunos/:id/edit', requireLogin, checkAdminRole, async (req, res) => {
+  const user = await User.findById(req.params.id);
+  res.render('./student-edit', { user });
 });
-router.post('/edit', async (req, res, next) => {
+
+router.post('/alunos/edit', requireLogin, checkAdminRole, async (req, res) => {
+  const { belt, lastGraded, dojo, senseiFeedback } = req.body;
+  await User.findByIdAndUpdate(req.query.id, {
+    belt,
+    lastGraded,
+    dojo,
+    senseiFeedback
+  });
+  res.redirect('/alunos');
+});
+
+router.post('/alunos/delete/:id', requireLogin, checkAdminRole, async (req, res) => {
+  await User.findByIdAndDelete(req.params.id);
+  res.redirect('/alunos');
+});
+
+router.get('/alunos/:id', requireLogin, async (req, res) => {
   const currentUser = req.session.currentUser;
-  const { firstName, lastName, email, belt } = req.body;
+  const user = await User.findById(req.params.id);
+  const formattedLastGradedDate = formatDate(user.lastGraded);
+  const formattedDateOfBirth = formatDate(user.dateOfBirth);
+  const remainingTime = calculateRemainingTime(user.lastGraded);
+  const age = calculateAge(user.dateOfBirth);
+  res.render('./student-details', { user, formattedLastGradedDate, age, formattedDateOfBirth, remainingTime, currentUser });
+});
+
+router.get('/perfil/edit', async (req, res, next) => {
+  const currentUser = req.session.currentUser;
+  res.render('./profile-edit', { currentUser });
+});
+router.post('/perfil/edit', async (req, res, next) => {
+  const currentUser = req.session.currentUser;
+  const { email, address, contactNumber, emergencyContact } = req.body;
 
   try {
     await User.findByIdAndUpdate(currentUser._id, {
-      firstName,
-      lastName,
       email,
-      belt
+      address,
+      contactNumber,
+      emergencyContact
     });
-    req.session.currentUser.firstName = firstName;
-    req.session.currentUser.lastName = lastName;
     req.session.currentUser.email = email;
-    req.session.currentUser.belt = belt;
+    req.session.currentUser.address = address;
+    req.session.currentUser.contactNumber = contactNumber;
+    req.session.currentUser.emergencyContact = emergencyContact;
     res.redirect(`/profile/${req.query.id}`);
   } catch (error) {
     next(error);

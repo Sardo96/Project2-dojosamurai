@@ -1,0 +1,34 @@
+<div class="container">
+    <div class="row">
+      <div class="col-md-6 offset-md-3">
+        <h1 class="mt-5">Editar informações de Perfil</h1>
+
+        <form action="/edit?id={{currentUser.id}}" method="POST">
+          <div class="form-group">
+
+          <div class="form-group">
+            <label for="email">Email</label>
+            <input type="text" id="email" name="email" value="{{currentUser.email}}" class="form-control">
+          </div>
+
+          <div class="form-group">
+            <label for="address">Morada</label>
+            <input type="text" id="address" name="address" value="{{currentUser.address}}" class="form-control">
+          </div>
+
+          <div class="form-group">
+            <label for="contactNumber">Contacto telefónico</label>
+            <input type="text" id="contactNumber" name="contactNumber" value="{{currentUser.contactNumber}}" class="form-control">
+          </div>
+
+          <div class="form-group">
+            <label for="emergencyContact">Contacto de emergência</label>
+            <input type="text" id="emergencyContact" name="emergencyContact" value="{{currentUser.emergencyContact}}" class="form-control">
+          </div>
+
+          
+          <button type="submit" class="btn btn-primary">Guardar alterações</button>
+    
+    </form>
+  </div>
+</div>

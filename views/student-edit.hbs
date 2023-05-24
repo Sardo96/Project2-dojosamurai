@@ -1,0 +1,68 @@
+<div class="container">
+    <div class="row">
+      <div class="col-md-6 offset-md-3">
+        <h1 class="mt-5">Atualizar informações do Aluno {{user.firstName}} {{user.lastName}}</h1>
+
+        <form action="/alunos/edit?id={{user.id}}" method="POST">
+          <div class="form-group">
+
+        <div class='form-group'>
+          <label for='belt'>Belt:</label>
+          <select id='belt' class='form-control' name='belt'>
+            <option value=''>Select a belt</option>
+            <option value='9th Kyu'>9th Kyu</option>
+            <option value='8th Kyu'>8th Kyu</option>
+            <option value='7th Kyu'>7th Kyu</option>
+            <option value='6th Kyu'>6th Kyu</option>
+            <option value='5th Kyu'>5th Kyu</option>
+            <option value='4th Kyu'>4th Kyu</option>
+            <option value='3rd Kyu'>3rd Kyu</option>
+            <option value='2nd Kyu'>2nd Kyu</option>
+            <option value='1st Kyu'>1st Kyu</option>
+            <option value='1st Dan'>1st Dan</option>
+            <option value='2nd Dan'>2nd Dan</option>
+            <option value='3rd Dan'>3rd Dan</option>
+            <option value='4th Dan'>4th Dan</option>
+            <option value='5th Dan'>5th Dan</option>
+            <option value='6th Dan'>6th Dan</option>
+            <option value='7th Dan'>7th Dan</option>
+          </select>
+        </div>
+
+        <div class='form-group'>
+          <label for='lastGraded'>Data última graduação:</label>
+          <input
+            type='date'
+            class='form-control'
+            name='lastGraded'
+            id='lastGraded'
+            title='Última Graduação'
+          />
+        </div>
+
+        <div class='form-group'>
+          <label for='dojo'>Dojo:</label>
+          <select class='form-control' name='dojo' id='dojo'>
+            <option value=''>Select a dojo</option>
+            <option value='Dojosamurai Rinchoa'>Dojosamurai Rinchoa</option>
+            <option value='Dojosamurai Fitares'>Dojosamurai Fitares</option>
+            <option value='Dojosamurai CGD'>Dojosamurai CGD</option>
+          </select>
+        </div>
+
+        <div class='form-group'>
+          <label for='bio'>FeedBack do Sensei:</label>
+          <textarea
+            class='form-control'
+            name='senseiFeedback'
+            id='senseiFeedback'
+            rows='2'
+          ></textarea>
+        </div>
+
+          
+          <button type="submit" class="btn btn-primary">Guardar alterações</button>
+    
+    </form>
+  </div>
+</div>

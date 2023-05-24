@@ -3,11 +3,11 @@
     <div class='col-md-6 offset-md-3'>
       <div class='card mt-5'>
         <div class='card-body cardbackcolor'>
-          <h2 class='card-title'>{{currentUser.firstName}}
-            {{currentUser.lastName}}</h2>
+          <h2 class='card-title'>{{user.firstName}}
+            {{user.lastName}}</h2>
           <p class='card-text'>
             <strong>Email:</strong>
-            {{currentUser.email}}
+            {{user.email}}
           </p>
           <p class='card-text'>
             <strong>Data de Nascimento:</strong>
@@ -17,7 +17,7 @@
           </p>
           <p class='card-text'>
             <strong>Cinturão:</strong>
-            {{currentUser.belt}}
+            {{user.belt}}
           </p>
           <p class='card-text'>
             <strong>Data da última graduação:</strong>
@@ -26,27 +26,27 @@
           </p>
           <p class='card-text'>
             <strong>Dojo:</strong>
-            {{currentUser.dojo}}
+            {{user.dojo}}
           </p>
           <p class='card-text'>
             <strong>Morada:</strong>
-            {{currentUser.address}}
+            {{user.address}}
           </p>
           <p class='card-text'>
             <strong>Contacto telefónico:</strong>
-            {{currentUser.contactNumber}}
+            {{user.contactNumber}}
           </p>
           <p class='card-text'>
             <strong>Contacto de emergência:</strong>
-            {{currentUser.emergencyContact}}
+            {{user.emergencyContact}}
           </p>
           <p class='card-text'>
             <strong>Feedback do Sensei:</strong>
-            {{currentUser.senseiFeedback}}
+            {{user.senseiFeedback}}
           </p>
         </div>
         <div class='card-footer cardbackcolor'>
-          <a href='/edit' class='btn btn-link'>Editar informações</a>
+          <a href='/alunos/{{user.id}}/edit' class='btn btn-link'>Editar informações</a>
         </div>
       </div>
     </div>
