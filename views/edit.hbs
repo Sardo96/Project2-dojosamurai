@@ -19,28 +19,8 @@
             <label for="email">Email</label>
             <input type="text" id="email" name="email" value="{{currentUser.email}}" class="form-control">
           </div>
-          <div class="form-group">
-            <label for="belt">Belt</label>
-            <select name="belt" id="belt" class="form-control">
-              <option value="">{{belt}}</option>
-              <option value="9th Kyu" {{#if (eq currentUser.belt '9th Kyu')}}selected{{/if}}>9th Kyu</option>
-              <option value="8th Kyu" {{#if (eq currentUser.belt '8th Kyu')}}selected{{/if}}>8th Kyu</option>
-              <option value="7th Kyu" {{#if (eq currentUser.belt '7th Kyu')}}selected{{/if}}>7th Kyu</option>
-              <option value="6th Kyu" {{#if (eq currentUser.belt '6th Kyu')}}selected{{/if}}>6th Kyu</option>
-              <option value="5th Kyu" {{#if (eq currentUser.belt '5th Kyu')}}selected{{/if}}>5th Kyu</option>
-              <option value="4th Kyu" {{#if (eq currentUser.belt '4th Kyu')}}selected{{/if}}>4th Kyu</option>
-              <option value="3rd Kyu" {{#if (eq currentUser.belt '3rd Kyu')}}selected{{/if}}>3rd Kyu</option>
-              <option value="2nd Kyu" {{#if (eq currentUser.belt '2nd Kyu')}}selected{{/if}}>2nd Kyu</option>
-              <option value="1st Kyu" {{#if (eq currentUser.belt '1st Kyu')}}selected{{/if}}>1st Kyu</option>
-              <option value="1st Dan" {{#if (eq currentUser.belt '1st Dan')}}selected{{/if}}>1st Dan</option>
-              <option value="2nd Dan" {{#if (eq currentUser.belt '2nd Dan')}}selected{{/if}}>2nd Dan</option>
-              <option value="3rd Dan" {{#if (eq currentUser.belt '3rd Dan')}}selected{{/if}}>3rd Dan</option>
-              <option value="4th Dan" {{#if (eq currentUser.belt '4th Dan')}}selected{{/if}}>4th Dan</option>
-              <option value="5th Dan" {{#if (eq currentUser.belt '5th Dan')}}selected{{/if}}>5th Dan</option>
-              <option value="6th Dan" {{#if (eq currentUser.belt '6th Dan')}}selected{{/if}}>6th Dan</option>
-              <option value="7th Dan" {{#if (eq currentUser.belt '7th Dan')}}selected{{/if}}>7th Dan</option>
-            </select>
-          </div>
+
+          
           <button type="submit" class="btn btn-primary">Update Profile</button>
     
     </form>

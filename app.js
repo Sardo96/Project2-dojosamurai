@@ -57,6 +57,7 @@ function getCurrentLoggedUser(req, res, next) {
 //use the middleware
 app.use(getCurrentLoggedUser);
 
+
 // default value for title local
 const capitalize = require('./utils/capitalize');
 const projectName = 'Project2-dojosamurai';

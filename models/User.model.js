@@ -61,7 +61,7 @@ const userSchema = new Schema(
       required: true,
       trim: true
     },
-    bio: {
+    senseiFeedback: {
       type: String,
       default: ''
     },
