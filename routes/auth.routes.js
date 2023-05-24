@@ -83,29 +83,30 @@ router.post('/signup', async (req, res) => {
 router.get('/login', (req, res) => {
   res.render('auth/login');
 });
-
 router.post('/login', async (req, res) => {
   const { email, password } = req.body;
 
   if (!email || !password) {
-    res.render('auth/signup', { errorMessage: 'Invalid login' });
+    res.render('auth/login', {
+      errorMessage: 'Please provide both email and password'
+    });
     return;
   }
 
   const user = await User.findOne({ email });
   if (!user) {
-    res.render('auth/signup', { errorMessage: 'Invalid Login' });
-  }
-
-  //check for password
-  if (bcrypt.compareSync(password, user.password)) {
-    //password match
-    req.session.currentUser = user;
-    res.redirect('/');
-  } else {
-    res.render('auth/signup', { errorMessage: 'invalid login' });
+    res.render('auth/login', { errorMessage: 'User not found' });
     return;
   }
+
+  const passwordMatch = bcrypt.compareSync(password, user.password);
+  if (!passwordMatch) {
+    res.render('auth/login', { errorMessage: 'Invalid password' });
+    return;
+  }
+
+  req.session.currentUser = user;
+  res.redirect('/');
 });
 
 function requireLogin(req, res, next) {

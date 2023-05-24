@@ -62,14 +62,25 @@
       </div>
     </nav>
 
-    <nav>
-      {{#if currentUser}}
-        <p class="text-center">Welcome
-          {{currentUser.firstName}}
-          {{currentUser.lastName}}
-          {{currentUser.belt}}!</p>
+<main>
+  <div class="container welcomesage">
+    <div class="row justify-content-end welcome-message">
+      <div class="col-md-3">
+        {{#if currentUser}}
+        <div class="card text-center small-card">
+          <div class="card-body">
+            <div class="d-flex align-items-center justify-content-center">
+              <img src="/images/ryu.gif" alt="Mini Karateka" class="mini-karateka-img">
+              <h5 class="card-title ms-3">Welcome, {{currentUser.firstName}} {{currentUser.lastName}}!</h5>
+            </div>
+            <h6 class="card-subtitle mb-2 text-muted"><strong>Belt: {{currentUser.belt}}.</strong></h6>
+          </div>
+        </div>
         {{/if}}
-    </nav>
+      </div>
+    </div>
+  </div>
+</main>
 
 
   {{{body}}}

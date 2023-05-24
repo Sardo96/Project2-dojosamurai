@@ -145,7 +145,13 @@ body {
   margin: 20px;
 }
 .cardbackcolor {
-  background-color: #dcbf02;
+  background-image: url('/images/Jud-kara-zuki-frontal.gif');
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-color: #d84213;
+  font-weight: bolder;
+  font-family: monospace;
+  color: #e7f805;
 }
 .backimage {
   background-image: url('/images/Dojo-shomen.jpg');
@@ -154,7 +160,21 @@ body {
 }
 .color {
   color: #fa0505;
-  font-family: 'Times New Roman', Times, serif;
+  font-family: monospace;
   font-size: large;
   font-weight: bolder;
+}
+.accordioncolorfront {
+  background-color: #d84213;
+}
+
+h3 {
+  background-color: black;
+  width: fit-content;
+}
+.welcome-message {
+  font-size: 10px;
+}
+.belt-info {
+  margin-left: 2%;
 }
