@@ -89,7 +89,7 @@ router.get('/', async (req, res, next) => {
   res.render('index', { currentUser });
 });
 
-router.get('/perfil', requireLogin, async (req, res, next) => {
+router.get('/profile', requireLogin, async (req, res, next) => {
   const currentUser = req.session.currentUser;
   const formattedLastGradedDate = formatDate(currentUser.lastGraded);
   const formattedDateOfBirth = formatDate(currentUser.dateOfBirth);
@@ -98,7 +98,7 @@ router.get('/perfil', requireLogin, async (req, res, next) => {
   res.render('profile', { currentUser, formattedLastGradedDate, age, formattedDateOfBirth, remainingTime });
 });
 
-router.get('/historia', async (req, res) => {
+router.get('/history', async (req, res) => {
   res.render('./history');
 });
 router.get('/mestres', async (req, res) => {
@@ -177,11 +177,11 @@ router.get('/alunos/:id', requireLogin, async (req, res) => {
   res.render('./student-details', { user, formattedLastGradedDate, age, formattedDateOfBirth, remainingTime, currentUser });
 });
 
-router.get('/perfil/edit', async (req, res, next) => {
+router.get('/profile/edit', async (req, res, next) => {
   const currentUser = req.session.currentUser;
   res.render('./profile-edit', { currentUser });
 });
-router.post('/perfil/edit', async (req, res, next) => {
+router.post('/profile/edit', async (req, res, next) => {
   const currentUser = req.session.currentUser;
   const { email, address, contactNumber, emergencyContact } = req.body;
 

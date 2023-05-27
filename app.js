@@ -62,7 +62,7 @@ app.use(getCurrentLoggedUser);
 const capitalize = require('./utils/capitalize');
 const projectName = 'Project2-dojosamurai';
 
-app.locals.appTitle = 'Dojo Samurai';
+app.locals.appTitle = 'DojoSamurai';
 
 // 👇 Start handling routes here
 const indexRoutes = require('./routes/index.routes');

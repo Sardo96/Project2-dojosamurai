@@ -48,7 +48,13 @@
         <div class='card-footer cardbackcolor'>
           <a href='/alunos/{{user.id}}/edit' class='btn btn-link'>Editar informações</a>
         </div>
+        <div class='card-footer cardbackcolor'>
+            <form action='/alunos/delete/{{user.id}}' method='POST'>
+                <button>Delete</button>
+            </form>
+        </div>
       </div>
     </div>
   </div>
 </div>
+

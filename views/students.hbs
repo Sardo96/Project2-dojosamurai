@@ -1,13 +1,43 @@
 {{#each users}}
-   Nome: {{this.firstName}} {{this.lastName}}
-   Email: {{this.email}}
-   Morada: {{this.address}}
-   Contacto: {{this.contactNumber}}
-   Contacto de emergência: {{this.emergencyContact}}
-   Data de nascimento: {{this.dateOfBirth}}
-   Graduação: {{this.belt}}
-   Data da última graduação: {{this.lastGraded}}
-   Dojo: {{this.dojo}}
-
+<div class='container imgbackground'>
+  <div class='row'>
+    <div class='col-md-6 offset-md-3'>
+      <div class='card mt-5'>
+        <div class='card-body cardbackcolor'>
+          <a class='card-title' href="/alunos/{{this.id}}">{{this.firstName}}
+            {{this.lastName}}</a>
+          <p class='card-text'>
+            <strong>Email:</strong>
+            {{this.email}}
+          </p>
+          <p class='card-text'>
+            <strong>Cinturão:</strong>
+            {{this.belt}}
+          </p>
+          <p class='card-text'>
+            <strong>Dojo:</strong>
+            {{this.dojo}}
+          </p>
+          <p class='card-text'>
+            <strong>Morada:</strong>
+            {{this.address}}
+          </p>
+          <p class='card-text'>
+            <strong>Contacto telefónico:</strong>
+            {{this.contactNumber}}
+          </p>
+          <p class='card-text'>
+            <strong>Contacto de emergência:</strong>
+            {{this.emergencyContact}}
+          </p>
+          <p class='card-text'>
+            <strong>Feedback do Sensei:</strong>
+            {{this.senseiFeedback}}
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 {{/each}}
-```
+
