@@ -25,7 +25,7 @@ function formatDate(dateString) {
   const year = date.getFullYear();
   const month = String(date.getMonth() + 1).padStart(2, '0');
   const day = String(date.getDate()).padStart(2, '0');
-  
+
   const formattedDate = `${day}-${month}-${year}`;
   return formattedDate;
 }
@@ -37,7 +37,10 @@ function calculateAge(dateOfBirth) {
   let age = today.getFullYear() - birthDate.getFullYear();
 
   const monthDiff = today.getMonth() - birthDate.getMonth();
-  if (monthDiff < 0 || (monthDiff === 0 && today.getDate() < birthDate.getDate())) {
+  if (
+    monthDiff < 0 ||
+    (monthDiff === 0 && today.getDate() < birthDate.getDate())
+  ) {
     age--;
   }
 
@@ -70,16 +73,25 @@ function calculateRemainingTime(lastGradedDate, currentBeltRank) {
 
   const timeDiff = today - lastGraded;
 
-  const remainingTime = Math.max(0, waitingPeriod * 365 * 24 * 60 * 60 * 1000 - timeDiff);
+  const remainingTime = Math.max(
+    0,
+    waitingPeriod * 365 * 24 * 60 * 60 * 1000 - timeDiff
+  );
 
-  const remainingYears = Math.floor(remainingTime / (365 * 24 * 60 * 60 * 1000));
-  const remainingMonths = Math.floor((remainingTime % (365 * 24 * 60 * 60 * 1000)) / (30 * 24 * 60 * 60 * 1000));
-  const remainingDays = Math.floor((remainingTime % (30 * 24 * 60 * 60 * 1000)) / (24 * 60 * 60 * 1000));
+  const remainingYears = Math.floor(
+    remainingTime / (365 * 24 * 60 * 60 * 1000)
+  );
+  const remainingMonths = Math.floor(
+    (remainingTime % (365 * 24 * 60 * 60 * 1000)) / (30 * 24 * 60 * 60 * 1000)
+  );
+  const remainingDays = Math.floor(
+    (remainingTime % (30 * 24 * 60 * 60 * 1000)) / (24 * 60 * 60 * 1000)
+  );
 
-  if(remainingYears === 0 && remainingMonths === 0 && remainingDays === 0){ 
+  if (remainingYears === 0 && remainingMonths === 0 && remainingDays === 0) {
     return 'Parabéns! Podes graduar caso o Sensei autorize!';
   } else {
-  return `Falta(m) ${remainingYears} ano(s), ${remainingMonths} mese(s) e ${remainingDays} dia(s) para a próxima graduação!`;
+    return `Falta(m) ${remainingYears} ano(s), ${remainingMonths} mese(s) e ${remainingDays} dia(s) para a próxima graduação!`;
   }
 }
 
@@ -95,7 +107,13 @@ router.get('/profile', requireLogin, async (req, res, next) => {
   const formattedDateOfBirth = formatDate(currentUser.dateOfBirth);
   const remainingTime = calculateRemainingTime(currentUser.lastGraded);
   const age = calculateAge(currentUser.dateOfBirth);
-  res.render('profile', { currentUser, formattedLastGradedDate, age, formattedDateOfBirth, remainingTime });
+  res.render('profile', {
+    currentUser,
+    formattedLastGradedDate,
+    age,
+    formattedDateOfBirth,
+    remainingTime
+  });
 });
 
 router.get('/history', async (req, res) => {
@@ -146,10 +164,15 @@ router.get('/alunos', requireLogin, checkAdminRole, async (req, res) => {
   }
 });
 
-router.get('/alunos/:id/edit', requireLogin, checkAdminRole, async (req, res) => {
-  const user = await User.findById(req.params.id);
-  res.render('./student-edit', { user });
-});
+router.get(
+  '/alunos/:id/edit',
+  requireLogin,
+  checkAdminRole,
+  async (req, res) => {
+    const user = await User.findById(req.params.id);
+    res.render('./student-edit', { user });
+  }
+);
 
 router.post('/alunos/edit', requireLogin, checkAdminRole, async (req, res) => {
   const { belt, lastGraded, dojo, senseiFeedback } = req.body;
@@ -162,10 +185,15 @@ router.post('/alunos/edit', requireLogin, checkAdminRole, async (req, res) => {
   res.redirect('/alunos');
 });
 
-router.post('/alunos/delete/:id', requireLogin, checkAdminRole, async (req, res) => {
-  await User.findByIdAndDelete(req.params.id);
-  res.redirect('/alunos');
-});
+router.post(
+  '/alunos/delete/:id',
+  requireLogin,
+  checkAdminRole,
+  async (req, res) => {
+    await User.findByIdAndDelete(req.params.id);
+    res.redirect('/alunos');
+  }
+);
 
 router.get('/alunos/:id', requireLogin, async (req, res) => {
   const currentUser = req.session.currentUser;
@@ -174,7 +202,14 @@ router.get('/alunos/:id', requireLogin, async (req, res) => {
   const formattedDateOfBirth = formatDate(user.dateOfBirth);
   const remainingTime = calculateRemainingTime(user.lastGraded);
   const age = calculateAge(user.dateOfBirth);
-  res.render('./student-details', { user, formattedLastGradedDate, age, formattedDateOfBirth, remainingTime, currentUser });
+  res.render('./student-details', {
+    user,
+    formattedLastGradedDate,
+    age,
+    formattedDateOfBirth,
+    remainingTime,
+    currentUser
+  });
 });
 
 router.get('/profile/edit', async (req, res, next) => {
@@ -196,7 +231,7 @@ router.post('/profile/edit', async (req, res, next) => {
     req.session.currentUser.address = address;
     req.session.currentUser.contactNumber = contactNumber;
     req.session.currentUser.emergencyContact = emergencyContact;
-    res.redirect(`/profile/${req.query.id}`);
+    res.redirect(`/profile`);
   } catch (error) {
     next(error);
   }
