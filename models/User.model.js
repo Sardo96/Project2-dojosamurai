@@ -87,8 +87,7 @@ const userSchema = new Schema(
       trim: true
     },
     emergencyContact: {
-      name: String,
-      contactNumber: String
+      type: String
     }
   },
   {
