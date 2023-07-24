@@ -231,7 +231,7 @@ router.post('/profile/edit', async (req, res, next) => {
     req.session.currentUser.address = address;
     req.session.currentUser.contactNumber = contactNumber;
     req.session.currentUser.emergencyContact = emergencyContact;
-    res.redirect(`/profile`);
+    res.redirect(`/profile/edit/${req.query.id}`);
   } catch (error) {
     next(error);
   }
